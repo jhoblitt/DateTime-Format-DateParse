@@ -1,0 +1,12 @@
+Build.PL
+Changes
+LICENSE
+MANIFEST
+META.yml
+Makefile.PL
+README
+Todo
+lib/DateTime/Format/DateParse.pm
+t/01_load.t
+t/02_date.t
+t/03_getdate.t

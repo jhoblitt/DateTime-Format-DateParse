@@ -1,0 +1,72 @@
+=pod
+
+=head1 NAME
+
+DateTime::Format::DateParse - Parses Date::Parse compatible formats
+
+=head1 SYNOPSIS
+
+    use DateTime::Format::DateParse;
+
+    my $dt = DateTime::Format::DateParse->parse_datetime( $date );
+    my $dt = DateTime::Format::DateParse->parse_datetime( $date, $zone );
+
+=head1 DESCRIPTION
+
+This module is a compatibility wrapper around L<Date::Parse>.
+
+=head1 USAGE
+
+=head2 Import Parameters
+
+This module accepts no arguments to it's C<import> method and exports no
+I<symbols>.
+
+=head2 Methods
+
+=head3 Class Methods
+
+=over 4
+
+=item * parse_datetime($date [, $zone])
+
+Accepts a L<Date::Parse> compatible C<$date> string and optionally a
+L<Time::Zone> compatible C<$zone> string.
+
+Returns a L<DateTime> object.
+
+=back
+
+=head1 DEVELOPER NOTES
+
+If L<parse_datetime> is called without C<$zone> then the timezone defaults to
+C<UTC>.  This may or may not cause incompatable behavior with L<Date::Parse>
+when parsing date formats that do not have a time component.
+
+=head1 CREDITS
+
+Just me, myself, and I.
+
+=head1 SUPPORT
+
+Please contact the author directly via e-mail.
+
+=head1 AUTHOR
+
+Joshua Hoblitt <jhoblitt@cpan.org>
+
+=head1 COPYRIGHT
+
+Copyright (c) 2005  Joshua Hoblitt. All rights reserved. This program is free
+software; you can redistribute it and/or modify it under the same terms as Perl
+itself.
+
+The full text of the licenses can be found in the I<LICENSE> file included with
+this module, or in L<perlartistic> and L<perlgpl> as supplied with Perl 5.8.1
+and later.
+
+=head1 SEE ALSO
+
+L<DateTime>, L<Date::Parse>
+
+=cut
