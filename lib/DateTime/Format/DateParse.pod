@@ -41,17 +41,19 @@ Returns a L<DateTime> object.
 
 =over 4
 
-=item * If L<parse_datetime> is called without C<$zone> then the timezone of
-the returned L<DateTime> object is set to the C<local> timezone.  This is
-consistent with the behavior of L<Date::Parse>.
+=item * If L<parse_datetime> is called on a C<$date> that doesn't know specify
+a timezone and C<$zone> is not set, then the timezone of the returned
+L<DateTime> object will be set to the C<local> timezone.  This is consistent
+with the behavior of L<Date::Parse>.
 
-=item * If L<parse_datetime> is called with a C<$zone> that
-L<DateTime::TimeZone> does not understand then the returned L<DateTime> object
-will have it's timezone set to a fixed offset from UTC.  This means that C<DST>
-information is not available and date math will not reflect C<DST> transitions.
-This may be resolved by using the L<DateTime::TimeZone::Alias> module to
-C<alias> the L<Time::Zone> timezone to an Olson DB name.  This may be done
-automatically in a future release.
+=item * If L<parse_datetime> is called without a C<$zone> but the C<$date>
+string I<does> specify a timezone/offset or if L<parse_datetime> is called with
+a C<$zone> that L<DateTime::TimeZone> does not understand, the returned
+L<DateTime> object will have it's timezone set to a fixed offset from UTC.
+This means that C<DST> information is not available and date math will not
+reflect C<DST> transitions.  This may be resolved for true timezones by using
+the L<DateTime::TimeZone::Alias> module to C<alias> the L<Time::Zone> timezone
+to an Olson DB name.  This may be done automatically in a future release.
 
 =back
 

@@ -1,5 +1,10 @@
 Revision history for Perl module DateTime::Format::DateParse
 
+0.02 Mon Jul 25 17:29:07 HST 2005
+    - use strptime() instead of str2time() as the interface to Date::Parse
+    - fix timezone handling so not all DT objects are set to 'local'
+
+
 0.01 Wed Jul 20 17:51:08 2005
     - original version; created by ExtUtils::ModuleMaker 0.36
 
