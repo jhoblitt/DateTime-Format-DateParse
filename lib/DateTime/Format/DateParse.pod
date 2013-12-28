@@ -74,7 +74,7 @@ Joshua Hoblitt (JHOBLITT) <jhoblitt@cpan.org>
 
 =head1 COPYRIGHT
 
-Copyright (c) 2005  Joshua Hoblitt. All rights reserved. This program is free
+Copyright (c) 2005-6  Joshua Hoblitt. All rights reserved. This program is free
 software; you can redistribute it and/or modify it under the same terms as Perl
 itself.
 

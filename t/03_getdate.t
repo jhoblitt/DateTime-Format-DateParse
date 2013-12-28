@@ -161,6 +161,10 @@ foreach my $test (@data) {
 
     my $dt = DateTime::Format::DateParse->parse_datetime( $format );
     my $testdt = DateTime->from_epoch( epoch => $time );
+    # Make sure that the test format & epoch time are compared in the same time
+    # zone.  This fixes the issue with the epoch time being relative to UTC but
+    # the format being intereprated as being in the local (non-UTC) timezone.
+    $testdt->set_time_zone($dt->time_zone);
 
     # The first five tests are parsed in the current time zone
     # But the check number is in GMT

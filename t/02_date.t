@@ -138,9 +138,20 @@ Tue, 15 Nov 1994 0:18:38 -0800
 
 my @data = split(/\n/, $data);
 
-plan tests => scalar @data;
+plan tests => scalar @data + 2;
 
 foreach my $format (@data) {
     my $dt = DateTime::Format::DateParse->parse_datetime($format);
     isa_ok($dt, 'DateTime');
 }
+
+{
+    my $dt = DateTime::Format::DateParse->parse_datetime('1995-01-24T09:08:17.1823213');
+    is( $dt->nanosecond, 182_321_300, 'nanosecond is an integer' );
+}
+
+{
+    my $dt = DateTime::Format::DateParse->parse_datetime('1995-01-24T09:08:17.6666666666');
+    is( $dt->nanosecond, 666_666_667, 'nanosecond is rounded properly' );
+}
+
