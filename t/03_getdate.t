@@ -8,6 +8,8 @@ use lib qw( ./lib );
 
 use Test::More;
 
+use DateTime;
+use DateTime::Duration;
 use DateTime::Format::DateParse;
 
 my $data = qq!1995-01-24                ;790905600
@@ -151,12 +153,23 @@ my @data = split(/\n/, $data);
 
 plan tests => scalar @data;
 
+my $test_num = 0;
 foreach my $test (@data) {
+    $test_num++;
+
     my ($format, $time) = split( ';', $test );
 
-    my $dt = DateTime::Format::DateParse->parse_datetime($format);
+    my $dt = DateTime::Format::DateParse->parse_datetime( $format );
     my $testdt = DateTime->from_epoch( epoch => $time );
 
-    is( $dt->iso8601, $testdt->iso8601, $format );
-#ok( $dt == $testdt );
+    # The first five tests are parsed in the current time zone
+    # But the check number is in GMT
+    if ( $test_num < 6 ) {
+        # convert local time to 'UTC'
+        $dt = $dt + DateTime::Duration->new(
+            seconds => $dt->time_zone->offset_for_datetime( $dt )
+        );
+    }
+
+    is( $dt, $testdt, $format );
 }
